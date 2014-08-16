@@ -1,0 +1,175 @@
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+<title>  Python利用xlwt写Excel文件 | 代码回音</title>
+<meta name="keywords" content="Wordpress,Java,C/C++,Python,Filter Driver,OPNET,Leyond">
+<meta name="description" content="Python利用xlwt写Excel文件">
+<link rel="alternate" type="application/rss+xml" title="代码回音 RSS Feed" href="http://www.codecho.com/feed/">
+<link rel="alternate" type="application/atom+xml" title="代码回音 Atom Feed" href="http://www.codecho.com/feed/atom/"> 
+<link rel="pingback" href="http://www.codecho.com/xmlrpc.php">
+
+<link rel="stylesheet" href="http://www.codecho.com/wp-content/themes/neutral/style.css" type="text/css">
+<link rel="stylesheet" href="http://www.codecho.com/wp-content/themes/neutral/comment-style.css" type="text/css">
+<!--[if lt IE 7]>
+<link rel="stylesheet" href="http://www.codecho.com/wp-content/themes/neutral/ie6.css" type="text/css" />
+<![endif]--> 
+<style type="text/css">
+.post img, .post a img { border:1px solid #ccc; padding:5px; margin:0 10px 0 0;  background:#f2f2f2; }
+.post a:hover img { border:1px solid #38a1e5; background:#9cd1e1; }
+.post img.wp-smiley { border:0px; padding:0px; margin:0px; background:none; }
+</style>
+
+ 
+<link rel="alternate" type="application/rss+xml" title="代码回音 » Python利用xlwt写Excel文件评论Feed" href="http://www.codecho.com/write-excel-files-with-python-using-xlwt/feed/">
+<link rel="stylesheet" id="wp-recentcomments-css" href="http://www.codecho.com/wp-content/plugins/wp-recentcomments/css/wp-recentcomments.css?ver=2.2.7" type="text/css" media="screen">
+<script type="text/javascript" src="http://www.codecho.com/wp-includes/js/jquery/jquery.js?ver=1.10.2"></script>
+<script type="text/javascript" src="http://www.codecho.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1"></script>
+<script type="text/javascript" src="http://www.codecho.com/wp-includes/js/comment-reply.min.js?ver=3.7.2"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.codecho.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.codecho.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Python利用xlrs读取Excel文件" href="http://www.codecho.com/read-excel-from-python-using-xlrs/">
+<link rel="next" title="WordPress3.0把中文地址转换为小写带来的问题" href="http://www.codecho.com/wordpress-3-0-turn-chinese-url-into-lowercase/">
+<meta name="generator" content="WordPress 3.7.2">
+<link rel="canonical" href="http://www.codecho.com/write-excel-files-with-python-using-xlwt/">
+<link rel="shortlink" href="http://www.codecho.com/?p=130952">
+  
+<!-- START: Syntax Highlighter ComPress -->
+<script type="text/javascript" src="http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shCore.js"></script>
+<script type="text/javascript" src="http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shAutoloader.js"></script>
+<link type="text/css" rel="stylesheet" href="http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/styles/shCoreDefault.css">
+<!-- END: Syntax Highlighter ComPress -->
+
+  <script type="text/javascript" src="http://www.codecho.com/wp-content/themes/neutral/js/scroll.js"></script>
+<script type="text/javascript" src="http://www.codecho.com/wp-content/themes/neutral/js/jscript.js"></script>
+<script type="text/javascript" src="http://www.codecho.com/wp-content/themes/neutral/js/comment.js"></script>
+<link href="chrome://translator/skin/floatingPanel.css" type="text/css" rel="stylesheet"></head>
+
+<body>
+<div id="wrapper">
+
+ <!-- END #header -->  <div id="contents" class="clearfix">
+
+   <div id="left_col">
+
+    <div id="bread_crumb">
+     
+    </div>
+
+
+    <div class="post">
+     <h1 class="post_title">Python利用xlwt写Excel文件</h1>
+     <ul class="post_info">
+      <li>2010年07月14日</li>      
+      <li>由<a href="http://www.codecho.com/author/admin/" title="由Leyond发布" rel="author">Leyond</a></li>    <li>发布在 <a href="http://www.codecho.com/category/programdev/python/" title="查看Python中的全部文章" rel="category tag">Python</a></li>
+      <li class="write_comment"><a href="http://www.codecho.com/write-excel-files-with-python-using-xlwt/#comments">留下评论</a></li>
+           </ul>
+     <div class="post_content">
+     <p>前面介绍了<a href="http://www.codecho.com/read-excel-from-python-using-xlrs/">Python 利用xlrs读取Excel文件</a>，今天接着介绍如何写Excel文件，用到的工具包为<a href="http://pypi.python.org/pypi/xlwt">xlwt</a>(by John Machin)。</p>
+<h4>基本部分</h4>
+<p>在写入Excel表格之前，你必须初始化workbook对象，然后添加一个workbook对象。比如：</p>
+<div><div id="highlighter_97314" class="syntaxhighlighter  py"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="py keyword">import</code> <code class="py plain">xlwt</code></div><div class="line number2 index1 alt1"><code class="py plain">wbk </code><code class="py keyword">=</code> <code class="py plain">xlwt.Workbook()</code></div><div class="line number3 index2 alt2"><code class="py plain">sheet </code><code class="py keyword">=</code> <code class="py plain">wbk.add_sheet(</code><code class="py string">'sheet 1'</code><code class="py plain">)</code></div></div></td></tr></tbody></table></div></div>
+<p>这样表单就被创建了,写入数据也很简单：</p>
+<div><div id="highlighter_650662" class="syntaxhighlighter  py "><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="py comments"># indexing is zero based, row then column</code></div><div class="line number2 index1 alt1"><code class="py plain">sheet.write(</code><code class="py value">0</code><code class="py plain">,</code><code class="py value">1</code><code class="py plain">,</code><code class="py string">'test text'</code><code class="py plain">)</code></div></div></td></tr></tbody></table></div></div>
+<p>之后，就可以保存文件(这里不需要想打开文件一样需要close文件)：</p>
+<div><div id="highlighter_946903" class="syntaxhighlighter  py "><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="py plain">wbk.save(</code><code class="py string">'test.xls'</code><code class="py plain">)</code></div></div></td></tr></tbody></table></div></div>
+<h4>深入探索</h4>
+<p>worksheet对象，当你更改表单内容的时候，会有警告提示。</p>
+<div><div id="highlighter_767672" class="syntaxhighlighter  py"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="py plain">sheet.write(</code><code class="py value">0</code><code class="py plain">,</code><code class="py value">0</code><code class="py plain">,</code><code class="py string">'test'</code><code class="py plain">)</code></div><div class="line number2 index1 alt1"><code class="py plain">sheet.write(</code><code class="py value">0</code><code class="py plain">,</code><code class="py value">0</code><code class="py plain">,</code><code class="py string">'oops'</code><code class="py plain">)</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="py comments"># returns error:</code></div><div class="line number5 index4 alt2"><code class="py comments"># Exception: Attempt to overwrite cell:</code></div><div class="line number6 index5 alt1"><code class="py comments"># sheetname=u'sheet 1' rowx=0 colx=0</code></div></div></td></tr></tbody></table></div></div>
+<p>解决方式：使用<code>cell_overwrite_ok=True来创建worksheet:</code></p>
+<div><div id="highlighter_402433" class="syntaxhighlighter  py"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="py plain">sheet2 </code><code class="py keyword">=</code>&nbsp; <code class="py plain">wbk.add_sheet(</code><code class="py string">'sheet 2'</code><code class="py plain">, cell_overwrite_ok</code><code class="py keyword">=</code><code class="py color1">True</code><code class="py plain">)</code></div><div class="line number2 index1 alt1"><code class="py plain">sheet2.write(</code><code class="py value">0</code><code class="py plain">,</code><code class="py value">0</code><code class="py plain">,</code><code class="py string">'some text'</code><code class="py plain">)</code></div><div class="line number3 index2 alt2"><code class="py plain">sheet2.write(</code><code class="py value">0</code><code class="py plain">,</code><code class="py value">0</code><code class="py plain">,</code><code class="py string">'this should overwrite'</code><code class="py plain">)</code></div></div></td></tr></tbody></table></div></div>
+<p>这样你就可以更改表单2的内容了。<span id="more-130952"></span></p>
+<h4>更多</h4>
+<div><div id="highlighter_756889" class="syntaxhighlighter  py"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="py comments"># Initialize a style</code></div><div class="line number2 index1 alt1"><code class="py plain">style </code><code class="py keyword">=</code> <code class="py plain">xlwt.XFStyle()</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="py comments"># Create a font to use with the style</code></div><div class="line number5 index4 alt2"><code class="py plain">font </code><code class="py keyword">=</code> <code class="py plain">xlwt.Font()</code></div><div class="line number6 index5 alt1"><code class="py plain">font.name </code><code class="py keyword">=</code> <code class="py string">'Times New Roman'</code></div><div class="line number7 index6 alt2"><code class="py plain">font.bold </code><code class="py keyword">=</code> <code class="py color1">True</code></div><div class="line number8 index7 alt1">&nbsp;</div><div class="line number9 index8 alt2"><code class="py comments"># Set the style's font to this new one you set up</code></div><div class="line number10 index9 alt1"><code class="py plain">style.font </code><code class="py keyword">=</code> <code class="py plain">font</code></div><div class="line number11 index10 alt2">&nbsp;</div><div class="line number12 index11 alt1"><code class="py comments"># Use the style when writing</code></div><div class="line number13 index12 alt2"><code class="py plain">sheet.write(</code><code class="py value">0</code><code class="py plain">, </code><code class="py value">0</code><code class="py plain">, </code><code class="py string">'some bold Times text'</code><code class="py plain">, style)</code></div></div></td></tr></tbody></table></div></div>
+<p>xlwt 允许你每个格子或者整行地设置格式。还可以允许你添加链接以及公式。其实你可以阅读源代码，那里有很多例子：</p>
+<ul>
+<li><code>dates.py</code>, 展示如何设置不同的数据格式</li>
+<li><code>hyperlinks.py</code>, 展示如何创建超链接 (<em>hint:  you need to use a formula</em>)</li>
+<li><code>merged.py</code>, 展示如何合并格子</li>
+<li><code>row_styles.py</code>, 展示如何应用Style到整行格子中.</li>
+</ul>
+<h4>例子</h4>
+<p>这里演示的数据并不是很容直接导入Excel:</p>
+<p>20 Sep, 263, 1148,&nbsp;&nbsp; 0,&nbsp;&nbsp; 1,&nbsp;&nbsp; 0,&nbsp;&nbsp; 0,&nbsp;&nbsp; 1,&nbsp;&nbsp; 12.1,&nbsp;&nbsp; 13.9, 1+1, 19.9<br>
+20 Sep, 263, 1118,&nbsp;&nbsp; 0,&nbsp;&nbsp; 1,&nbsp;&nbsp; 0, 360,&nbsp;&nbsp; 0,&nbsp;&nbsp; 14.1,&nbsp;&nbsp; 15.3, 1+1, 19.9<br>
+20 Sep, 263, 1048,&nbsp;&nbsp; 0,&nbsp;&nbsp; 1,&nbsp;&nbsp; 0,&nbsp;&nbsp; 0,&nbsp;&nbsp; 0,&nbsp;&nbsp; 14.2,&nbsp;&nbsp; 15.1, 1+1, 19.9<br>
+20 Sep, 263, 1018,&nbsp;&nbsp; 0,&nbsp;&nbsp; 1,&nbsp;&nbsp; 0, 360,&nbsp;&nbsp; 0,&nbsp;&nbsp; 14.2,&nbsp;&nbsp; 15.9, 1+1, 19.9<br>
+20 Sep, 263, 0948,&nbsp;&nbsp; 0,&nbsp;&nbsp; 1,&nbsp;&nbsp; 0,&nbsp;&nbsp; 0,&nbsp;&nbsp; 0,&nbsp;&nbsp; 14.4,&nbsp;&nbsp; 15.3, 1+1, 19.9</p>
+<p>第一个逗号之前数据表示日期，第二列表示今年的第几天(可忽略)，我们感兴趣的是第九列的温度数据。我们的目的是把感兴趣的数字写入Excel: 第一列为时间，第二列为温度。首先你要把上面的数据保存在一个<code>weather.data.exampl</code>e文件中。</p>
+<p>然后运行下面的代码：</p>
+<div><div id="highlighter_720844" class="syntaxhighlighter  py"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div><div class="line number40 index39 alt1">40</div><div class="line number41 index40 alt2">41</div><div class="line number42 index41 alt1">42</div><div class="line number43 index42 alt2">43</div><div class="line number44 index43 alt1">44</div><div class="line number45 index44 alt2">45</div><div class="line number46 index45 alt1">46</div><div class="line number47 index46 alt2">47</div><div class="line number48 index47 alt1">48</div><div class="line number49 index48 alt2">49</div><div class="line number50 index49 alt1">50</div><div class="line number51 index50 alt2">51</div><div class="line number52 index51 alt1">52</div><div class="line number53 index52 alt2">53</div><div class="line number54 index53 alt1">54</div><div class="line number55 index54 alt2">55</div><div class="line number56 index55 alt1">56</div><div class="line number57 index56 alt2">57</div><div class="line number58 index57 alt1">58</div><div class="line number59 index58 alt2">59</div><div class="line number60 index59 alt1">60</div><div class="line number61 index60 alt2">61</div><div class="line number62 index61 alt1">62</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="py comments">'''</code></div><div class="line number2 index1 alt1"><code class="py comments">Script to convert awkwardly-formatted weather data</code></div><div class="line number3 index2 alt2"><code class="py comments">into an Excel spreadsheet using Python and xlwt.</code></div><div class="line number4 index3 alt1"><code class="py comments">'''</code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="py keyword">from</code> <code class="py plain">datetime </code><code class="py keyword">import</code> <code class="py plain">datetime</code></div><div class="line number7 index6 alt2"><code class="py keyword">import</code> <code class="py plain">xlwt</code></div><div class="line number8 index7 alt1">&nbsp;</div><div class="line number9 index8 alt2"><code class="py comments"># Create workbook and worksheet</code></div><div class="line number10 index9 alt1"><code class="py plain">wbk </code><code class="py keyword">=</code> <code class="py plain">xlwt.Workbook()</code></div><div class="line number11 index10 alt2"><code class="py plain">sheet </code><code class="py keyword">=</code> <code class="py plain">wbk.add_sheet(</code><code class="py string">'temperatures'</code><code class="py plain">)</code></div><div class="line number12 index11 alt1">&nbsp;</div><div class="line number13 index12 alt2"><code class="py comments"># Set up a date format style to use in the</code></div><div class="line number14 index13 alt1"><code class="py comments"># spreadsheet</code></div><div class="line number15 index14 alt2"><code class="py plain">excel_date_fmt </code><code class="py keyword">=</code> <code class="py string">'M/D/YY h:mm'</code></div><div class="line number16 index15 alt1"><code class="py plain">style </code><code class="py keyword">=</code> <code class="py plain">xlwt.XFStyle()</code></div><div class="line number17 index16 alt2"><code class="py plain">style.num_format_str </code><code class="py keyword">=</code> <code class="py plain">excel_date_fmt</code></div><div class="line number18 index17 alt1">&nbsp;</div><div class="line number19 index18 alt2"><code class="py comments"># Weather data has no year, so assume it's the current year.</code></div><div class="line number20 index19 alt1"><code class="py plain">year </code><code class="py keyword">=</code> <code class="py plain">datetime.now().year</code></div><div class="line number21 index20 alt2">&nbsp;</div><div class="line number22 index21 alt1"><code class="py comments"># Convert year to a string because we'll be</code></div><div class="line number23 index22 alt2"><code class="py comments"># building a date string below</code></div><div class="line number24 index23 alt1"><code class="py plain">year </code><code class="py keyword">=</code> <code class="py functions">str</code><code class="py plain">(year)</code></div><div class="line number25 index24 alt2">&nbsp;</div><div class="line number26 index25 alt1"><code class="py comments"># The format of the date string we'll be building</code></div><div class="line number27 index26 alt2"><code class="py plain">python_str_date_fmt </code><code class="py keyword">=</code> <code class="py string">'%d %b-%H%M-%Y'</code></div><div class="line number28 index27 alt1">&nbsp;</div><div class="line number29 index28 alt2"><code class="py plain">row </code><code class="py keyword">=</code> <code class="py value">0</code>&nbsp; <code class="py comments"># row counter</code></div><div class="line number30 index29 alt1"><code class="py plain">f </code><code class="py keyword">=</code> <code class="py functions">open</code><code class="py plain">(</code><code class="py string">'c:/baidu/weather.data.example'</code><code class="py plain">)</code></div><div class="line number31 index30 alt2"><code class="py keyword">for</code> <code class="py plain">line </code><code class="py keyword">in</code> <code class="py plain">f:</code></div><div class="line number32 index31 alt1"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py comments"># separate fields by commas</code></div><div class="line number33 index32 alt2"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py plain">L </code><code class="py keyword">=</code> <code class="py plain">line.rstrip().split(</code><code class="py string">','</code><code class="py plain">)</code></div><div class="line number34 index33 alt1">&nbsp;</div><div class="line number35 index34 alt2"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py comments"># skip this line if all fields not present</code></div><div class="line number36 index35 alt1"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py keyword">if</code> <code class="py functions">len</code><code class="py plain">(L) &lt; </code><code class="py value">12</code><code class="py plain">:</code></div><div class="line number37 index36 alt2"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py keyword">continue</code></div><div class="line number38 index37 alt1">&nbsp;</div><div class="line number39 index38 alt2"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py comments"># Fields have leading spaces, so strip 'em</code></div><div class="line number40 index39 alt1"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py plain">date </code><code class="py keyword">=</code> <code class="py plain">L[</code><code class="py value">0</code><code class="py plain">].strip()</code></div><div class="line number41 index40 alt2"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py plain">time </code><code class="py keyword">=</code> <code class="py plain">L[</code><code class="py value">2</code><code class="py plain">].strip()</code></div><div class="line number42 index41 alt1">&nbsp;</div><div class="line number43 index42 alt2"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py comments"># Datatypes matter. If we kept this as a string</code></div><div class="line number44 index43 alt1"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py comments"># in Python, it would be a string in the Excel sheet.</code></div><div class="line number45 index44 alt2"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py plain">temperature </code><code class="py keyword">=</code> <code class="py functions">float</code><code class="py plain">(L[</code><code class="py value">8</code><code class="py plain">])</code></div><div class="line number46 index45 alt1">&nbsp;</div><div class="line number47 index46 alt2"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py comments"># Construct a date string based on the string</code></div><div class="line number48 index47 alt1"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py comments"># date format&nbsp; we specified above</code></div><div class="line number49 index48 alt2"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py plain">date_string </code><code class="py keyword">=</code> <code class="py plain">date </code><code class="py keyword">+</code> <code class="py string">'-'</code> <code class="py keyword">+</code> <code class="py plain">time </code><code class="py keyword">+</code> <code class="py string">'-'</code> <code class="py keyword">+</code> <code class="py plain">year</code></div><div class="line number50 index49 alt1">&nbsp;</div><div class="line number51 index50 alt2"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py comments"># Use the newly constructed string to create a</code></div><div class="line number52 index51 alt1"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py comments"># datetime object</code></div><div class="line number53 index52 alt2"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py plain">date_object </code><code class="py keyword">=</code> <code class="py plain">datetime.strptime(date_string,</code></div><div class="line number54 index53 alt1"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py plain">python_str_date_fmt)</code></div><div class="line number55 index54 alt2">&nbsp;</div><div class="line number56 index55 alt1"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py comments"># Write the data, using the style defined above.</code></div><div class="line number57 index56 alt2"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py plain">sheet.write(row,</code><code class="py value">0</code><code class="py plain">,date_object, style)</code></div><div class="line number58 index57 alt1"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py plain">sheet.write(row,</code><code class="py value">1</code><code class="py plain">,temperature)</code></div><div class="line number59 index58 alt2">&nbsp;</div><div class="line number60 index59 alt1"><code class="py spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="py plain">row </code><code class="py keyword">+</code><code class="py keyword">=</code> <code class="py value">1</code></div><div class="line number61 index60 alt2">&nbsp;</div><div class="line number62 index61 alt1"><code class="py plain">wbk.save(</code><code class="py string">'c:/baidu/reformatted.data.xls'</code><code class="py plain">)</code></div></div></td></tr></tbody></table></div></div>
+
+<p>参考：<a href="http://scienceoss.com/write-excel-files-with-python-using-xlwt/">http://scienceoss.com/write-excel-files-with-python-using-xlwt/</a></p>
+   <table height="260px" width="100%">
+     <tbody>
+     </tbody></table>
+           </div>
+    </div>
+
+
+    
+
+      
+   
+   </div><!-- END #left_col -->
+
+   <!-- END #right_col -->
+  </div><!-- END #contents -->
+ <!-- END #footer -->
+
+</div><!-- END #wrapper -->
+  
+<!-- START: Syntax Highlighter ComPress -->
+<script type="text/javascript">
+    SyntaxHighlighter.autoloader(
+        'applescript      http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushAppleScript.js',
+        'actionscript3 as3    http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushAS3.js',
+        'bash shell       http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushBash.js',
+        'coldfusion cf      http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushColdFusion.js',
+        'cpp c          http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushCpp.js',
+        'c# c-sharp csharp    http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushCSharp.js',
+        'css          http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushCss.js',
+        'delphi pascal pas    http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushDelphi.js',
+        'diff patch         http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushDiff.js',
+        'erl erlang       http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushErlang.js',
+        'groovy         http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushGroovy.js',
+        'java         http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushJava.js',
+        'jfx javafx       http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushJavaFX.js',
+        'js jscript javascript  http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushJScript.js',
+        'perl pl        http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPerl.js',
+        'php          http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPhp.js',
+        'text plain       http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPlain.js',
+        'powershell ps          http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPowerShell.js',
+        'py python        http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushPython.js',
+        'ruby rails ror rb    http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushRuby.js',
+        'sass scss              http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushSass.js',
+        'scala          http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushScala.js',
+        'sql          http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushSql.js',
+        'vb vbnet       http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushVb.js',
+        'xml xhtml xslt html  http://www.codecho.com/wp-content/plugins/syntax-highlighter-compress/scripts/shBrushXml.js'
+    );
+                        SyntaxHighlighter.defaults['tab-size'] = 4;
+    SyntaxHighlighter.all();
+</script>
+<!-- END: Syntax Highlighter ComPress -->
+
+  <script>
+/* <![CDATA[ */
+var rcGlobal = {
+  serverUrl   :'http://www.codecho.com',
+  infoTemp    :'%REVIEWER% 在 %POST%',
+  loadingText   :'正在加载',
+  noCommentsText  :'没有任何评论',
+  newestText    :'&laquo; 最新的',
+  newerText   :'&laquo; 上一页',
+  olderText   :'下一页 &raquo;',
+  showContent   :'',
+  external    :'',
+  avatarSize    :'32',
+  avatarPosition  :'left',
+  anonymous   :'匿名'
+};
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.codecho.com/wp-content/plugins/wp-recentcomments/js/wp-recentcomments-jquery.js?ver=2.2.7"></script>
+
+<div style="display: none; bottom: auto; left: 415px; right: auto; top: 248px;" class="translator-theme-original" id="translator-floating-panel"><div title="点击翻译" id="translator-floating-panel-button"></div></div></body>
