@@ -1,4 +1,5 @@
-﻿# -*- coding: utf-8 -*-
+﻿#! python3
+# -*- coding: utf-8 -*-
 
 import threading
 

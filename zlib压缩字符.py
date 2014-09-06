@@ -1,0 +1,10 @@
+#! python3
+import zlib
+string = '''
+adlkfjlakjdflkajlfjkaklfjlaadsssssssssssssssssssskjflkajsflksjalfkjalksdfjlakjflaksjdfadlkfjlakjdflkajlfjkaklfjlaadsssssssssssssssssssskjflkajsflksjalfkjalksdfjlakjflaksjdfadlkfjlakjdflkajlfjkaklfjlaadsssssssssssssssssssskjflkajsflksjalfkjalksdfjlakjflaksjdfadlkfjlakjdflkajlfjkaklfjlaadsssssssssssssssssssskjflkajsflksjalfkjalksdfjlakjflaksjdfadlkfjlakjdflklaksjdfadlkfjlakjdflkajlfjkaklfjlaadsssssssssssssssssssskjflkajsflksjalfkjalksdfjlakjflaksjdf'''
+print(len(string), )
+compressed = zlib.compress(string.encode())  # python3开始只能压缩bytes了
+print("Compressed Size: {0}".format(len(compressed)))
+
+decompressed = zlib.decompress(compressed)
+print(decompressed)

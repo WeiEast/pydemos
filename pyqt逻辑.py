@@ -1,3 +1,4 @@
+#! python3
 from qtui import Ui_Form
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import QInputDialog
